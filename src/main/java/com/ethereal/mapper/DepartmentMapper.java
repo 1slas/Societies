@@ -1,36 +1,19 @@
 package com.ethereal.mapper;
 
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.ethereal.pojo.Department;
+
 /**
- * 操作department相关数据接口
+* @author 53609
+* @description 针对表【department(社团信息表)】的数据库操作Mapper
+* @createDate 2024-03-26 15:36:38
+* @Entity generator.domain.Department
 */
-public interface DepartmentMapper {
+public interface DepartmentMapper extends BaseMapper<Department> {
 
-    /**
-      * 新增
-    */
-    int insert(Department department);
-
-    /**
-      * 删除
-    */
-    int deleteById(Integer id);
-
-    /**
-      * 修改
-    */
-    int updateById(Department department);
-
-    /**
-      * 根据ID查询
-    */
-    Department selectById(Integer id);
-
-    /**
-      * 查询所有
-    */
-    List<Department> selectAll(Department department);
-
-    @Select("select * from department where user_id = #{userId}")
-    Department selectByUserId(Integer userId);
 }
+
+
+
+

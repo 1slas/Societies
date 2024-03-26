@@ -1,35 +1,19 @@
 package com.ethereal.mapper;
 
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.ethereal.pojo.Activity;
 
 /**
- * 操作activity相关数据接口
+* @author 53609
+* @description 针对表【activity(社团活动表)】的数据库操作Mapper
+* @createDate 2024-03-26 15:36:38
+* @Entity generator.domain.Activity
 */
-public interface ActivityMapper {
-
-    /**
-      * 新增
-    */
-    int insert(Activity activity);
-
-    /**
-      * 删除
-    */
-    int deleteById(Integer id);
-
-    /**
-      * 修改
-    */
-    int updateById(Activity activity);
-
-    /**
-      * 根据ID查询
-    */
-    Activity selectById(Integer id);
-
-    /**
-      * 查询所有
-    */
-    List<Activity> selectAll(Activity activity);
+public interface ActivityMapper extends BaseMapper<Activity> {
 
 }
+
+
+
+

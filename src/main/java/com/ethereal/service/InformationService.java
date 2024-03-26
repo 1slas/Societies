@@ -1,12 +1,13 @@
 package com.ethereal.service;
 
-/**
- * @author Echo
- * @version 1.0
- * @project Societies
- * @description
- * @date 2024/3/23 15:13:03
- **/
+import com.baomidou.mybatisplus.extension.service.IService;
+import generator.domain.Information;
 
-public interface InformationService {
+/**
+* @author 53609
+* @description 针对表【information(社团资讯表)】的数据库操作Service
+* @createDate 2024-03-26 15:36:38
+*/
+public interface InformationService extends IService<Information> {
+
 }

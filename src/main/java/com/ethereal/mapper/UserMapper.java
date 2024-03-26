@@ -1,37 +1,19 @@
 package com.ethereal.mapper;
 
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.ethereal.pojo.User;
 
 /**
- * 操作user相关数据接口
+* @author 53609
+* @description 针对表【user(学生信息表)】的数据库操作Mapper
+* @createDate 2024-03-26 15:36:38
+* @Entity generator.domain.User
 */
-public interface UserMapper {
+public interface UserMapper extends BaseMapper<User> {
 
-    /**
-      * 新增
-    */
-    int insert(User user);
-
-    /**
-      * 删除
-    */
-    int deleteById(Integer id);
-
-    /**
-      * 修改
-    */
-    int updateById(User user);
-
-    /**
-      * 根据ID查询
-    */
-    User selectById(Integer id);
-
-    /**
-      * 查询所有
-    */
-    List<User> selectAll(User user);
-
-    @Select("select * from user where username = #{username}")
-    User selectByUsername(String username);
 }
+
+
+
+

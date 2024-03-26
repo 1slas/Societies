@@ -1,28 +1,27 @@
 package com.ethereal.service;
 
-import com.ethereal.pojo.Account;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.ethereal.pojo.Admin;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
+
 /**
- * @author Echo
- * @version 1.0
- * @project Societies
- * @description
- * @date 2024/3/23 15:12:16
- **/
-
-public interface AdminService {
+* @author 53609
+* @description 针对表【admin(管理员)】的数据库操作Service
+* @createDate 2024-03-26 15:36:38
+*/
+public interface AdminService extends IService<Admin> {
     void add(Admin admin);
-    void delete(Integer id);
-    void update(Admin admin);
-    Admin selectById(Admin admin);
-    List<Admin> selectAll(Admin admin);
-    PageInfo<Admin> selectPage(Admin admin, Integer pageNum, Integer pageSize);
-    Account login(Account account);
-    void register(Account account);
-    void updatePassword(Account account);
 
+    void deleteById(Integer id);
+
+    void deleteBatch(List<Integer> ids);
+
+    Admin selectById(Integer id);
+
+    List<Admin> selectAll(Admin admin);
+
+    PageInfo<Admin> selectPage(Admin admin, Integer pageNum, Integer pageSize);
 }

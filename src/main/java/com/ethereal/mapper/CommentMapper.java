@@ -1,35 +1,19 @@
 package com.ethereal.mapper;
 
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.ethereal.pojo.Comment;
 
 /**
- * 操作comment相关数据接口
+* @author 53609
+* @description 针对表【comment(评论信息表)】的数据库操作Mapper
+* @createDate 2024-03-26 15:36:38
+* @Entity generator.domain.Comment
 */
-public interface CommentMapper {
-
-    /**
-      * 新增
-    */
-    int insert(Comment comment);
-
-    /**
-      * 删除
-    */
-    int deleteById(Integer id);
-
-    /**
-      * 修改
-    */
-    int updateById(Comment comment);
-
-    /**
-      * 根据ID查询
-    */
-    Comment selectById(Integer id);
-
-    /**
-      * 查询所有
-    */
-    List<Comment> selectAll(Comment comment);
+public interface CommentMapper extends BaseMapper<Comment> {
 
 }
+
+
+
+

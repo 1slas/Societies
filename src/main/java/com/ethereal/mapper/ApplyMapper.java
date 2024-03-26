@@ -1,38 +1,19 @@
 package com.ethereal.mapper;
 
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.ethereal.pojo.Apply;
 
 /**
- * 操作apply相关数据接口
+* @author 53609
+* @description 针对表【apply(申请审批表)】的数据库操作Mapper
+* @createDate 2024-03-26 15:36:38
+* @Entity generator.domain.Apply
 */
-public interface ApplyMapper {
-
-    /**
-      * 新增
-    */
-    int insert(Apply apply);
-
-    /**
-      * 删除
-    */
-    int deleteById(Integer id);
-
-    /**
-      * 修改
-    */
-    int updateById(Apply apply);
-
-    /**
-      * 根据ID查询
-    */
-    Apply selectById(Integer id);
-
-    /**
-      * 查询所有
-    */
-    List<Apply> selectAll(Apply apply);
-
-    @Select("select * from apply where user_id = #{userId} and department_id = #{departmentId} and (status = '待审核' or status = '审核通过')")
-    List<Apply> selectByStatus(@Param("userId") Integer userId, @Param("departmentId") Integer departmentId);
+public interface ApplyMapper extends BaseMapper<Apply> {
 
 }
+
+
+
+

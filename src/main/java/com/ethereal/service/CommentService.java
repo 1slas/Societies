@@ -1,24 +1,13 @@
 package com.ethereal.service;
 
-import com.ethereal.pojo.Comment;
-import com.github.pagehelper.PageInfo;
-
-import java.util.List;
+import com.baomidou.mybatisplus.extension.service.IService;
+import generator.domain.Comment;
 
 /**
- * @author Echo
- * @version 1.0
- * @project Societies
- * @description
- * @date 2024/3/23 15:12:51
- **/
+* @author 53609
+* @description 针对表【comment(评论信息表)】的数据库操作Service
+* @createDate 2024-03-26 15:36:38
+*/
+public interface CommentService extends IService<Comment> {
 
-public interface CommentService {
-    void add(Comment comment);
-    void deleteById(Integer id);
-    void deleteBatch(List<Integer> ids);
-    void updateById(Comment comment);
-    Comment selectById(Integer id);
-    List<Comment> selectAll(Comment comment);
-    PageInfo<Comment> selectPage(Comment comment, Integer pageNum, Integer pageSize);
 }

@@ -1,12 +1,13 @@
 package com.ethereal.service;
 
-/**
- * @author Echo
- * @version 1.0
- * @project Societies
- * @description
- * @date 2024/3/23 15:13:13
- **/
+import com.baomidou.mybatisplus.extension.service.IService;
+import generator.domain.Notice;
 
-public interface NoticeService {
+/**
+* @author 53609
+* @description 针对表【notice(公告信息表)】的数据库操作Service
+* @createDate 2024-03-26 15:36:38
+*/
+public interface NoticeService extends IService<Notice> {
+
 }

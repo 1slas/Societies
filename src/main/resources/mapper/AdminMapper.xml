@@ -20,4 +20,18 @@
         name,avatar,role,
         phone,email
     </sql>
+    <select id="selectAll" resultType="com.ethereal.pojo.Admin">
+        <include refid="Base_Column_List"/>
+        from admin
+        <where>
+            <if test="id != null"> and id = #{id}</if>
+            <if test="username != null"> and username like concat('%',#{username},'%') </if>
+            <if test="password != null"> and password= #{password}</if>
+            <if test="name != null"> and name= #{name}</if>
+            <if test="phone != null"> and phone= #{phone}</if>
+            <if test="email != null"> and email= #{email}</if>
+            <if test="avatar != null"> and avatar= #{avatar}</if>
+            <if test="role != null"> and role= #{role}</if>
+        </where>
+    </select>
 </mapper>

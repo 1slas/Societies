@@ -8,7 +8,9 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.ethereal.common.Constants;
 import com.ethereal.common.enums.ResultCodeEnum;
 import com.ethereal.common.enums.RoleEnum;
+import com.ethereal.exception.CustomException;
 import com.ethereal.pojo.Account;
+import com.ethereal.pojo.Admin;
 import com.ethereal.service.AdminService;
 import com.ethereal.service.UserService;
 import jakarta.annotation.Resource;
@@ -47,7 +49,7 @@ public class JwtInterceptor implements HandlerInterceptor {
         if(ObjectUtils.isEmpty(token)){
             throw new CustomException(ResultCodeEnum.TOKEN_INVALID_ERROR);
         }
-        Account account = null;
+        Admin account = null;
         try {
             //解析token获取存储的数据
             String userRole = JWT.decode(token).getAudience().get(0);
