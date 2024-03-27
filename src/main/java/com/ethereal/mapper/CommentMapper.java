@@ -3,6 +3,9 @@ package com.ethereal.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ethereal.pojo.Comment;
+import com.ethereal.pojo.DTO.CommentDTO;
+
+import java.util.List;
 
 /**
 * @author 53609
@@ -12,6 +15,7 @@ import com.ethereal.pojo.Comment;
 */
 public interface CommentMapper extends BaseMapper<Comment> {
 
+    List<CommentDTO> selectAll(CommentDTO commentDTO);
 }
 
 

@@ -3,6 +3,8 @@ package com.ethereal.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ethereal.pojo.Activity;
+import com.ethereal.pojo.DTO.ActivityDTO;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -20,5 +22,9 @@ public interface ActivityService extends IService<Activity> {
 
     void deleteBatch(List<Integer> ids);
 
-    Activity selectById(Integer id);
+    ActivityDTO selectById(Integer id);
+
+    List<ActivityDTO> selectAll(ActivityDTO activityDTO);
+
+    PageInfo<ActivityDTO> selectPage(ActivityDTO activity, Integer pageNum, Integer pageSize);
 }

@@ -3,6 +3,9 @@ package com.ethereal.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ethereal.pojo.Apply;
+import com.ethereal.pojo.DTO.ApplyDTO;
+
+import java.util.List;
 
 /**
 * @author 53609
@@ -11,6 +14,10 @@ import com.ethereal.pojo.Apply;
 * @Entity generator.domain.Apply
 */
 public interface ApplyMapper extends BaseMapper<Apply> {
+
+    List<Apply> selectByStatus(Integer id, Integer departmentId);
+
+    List<ApplyDTO> selectAll(ApplyDTO applyDTO);
 
 }
 

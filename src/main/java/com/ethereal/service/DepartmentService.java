@@ -1,7 +1,10 @@
 package com.ethereal.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import generator.domain.Department;
+import com.ethereal.pojo.Department;
+
+import java.util.List;
+
 
 /**
 * @author 53609
@@ -10,4 +13,11 @@ import generator.domain.Department;
 */
 public interface DepartmentService extends IService<Department> {
 
+    void add(Department department);
+
+    void deleteById(Integer id);
+
+    void deleteBatch(List<Integer> ids);
+
+    Department selectById(Integer id);
 }

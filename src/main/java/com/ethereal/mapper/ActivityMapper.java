@@ -3,6 +3,9 @@ package com.ethereal.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ethereal.pojo.Activity;
+import com.ethereal.pojo.DTO.ActivityDTO;
+
+import java.util.List;
 
 /**
 * @author 53609
@@ -12,6 +15,7 @@ import com.ethereal.pojo.Activity;
 */
 public interface ActivityMapper extends BaseMapper<Activity> {
 
+    List<ActivityDTO> selectAll(ActivityDTO activityDTO);
 }
 
 

@@ -19,4 +19,46 @@
         description,process,status,
         note
     </sql>
+
+    <select id="selectByStatus" resultType="com.ethereal.pojo.Apply">
+        select
+        <include refid="Base_Column_List"/>
+        from apply
+        where
+        user_id = #{userId}
+        AND department_id = #{departmentId}
+        AND (status = '待审核' OR status = '审核通过');
+    </select>
+    <resultMap id="selectAllMap" type="com.ethereal.pojo.DTO.ApplyDTO">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="departmentId" column="department_id" jdbcType="INTEGER"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
+        <result property="process" column="process" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="VARCHAR"/>
+        <result property="note" column="note" jdbcType="VARCHAR"/>
+        <result property="userName" column="username" jdbcType="VARCHAR"/>
+        <result property="departmentName" column="department_name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <select id="selectAll"  resultMap="selectAllMap">
+        select apply.id,apply.user_id,department_id,apply.description,process,status,note,user.name as departmentName
+        from apply
+        left join user on apply.user_id = user.id
+        left join department on apply.department_id = department.id
+        <where>
+            <if test="id != null"> and apply.id= #{id}</if>
+            <if test="userId != null"> and apply.user_id = #{userId}</if>
+            <if test="departmentId != null"> and department_id= #{departmentId}</if>
+            <if test="description != null"> and apply.description= #{description}</if>
+            <if test="process != null"> and process= #{process}</if>
+            <if test="status != null"> and status= #{status}</if>
+            <if test="note != null"> and note= #{note}</if>
+        </where>
+        order by id desc
+    </select>
+
+
+
 </mapper>

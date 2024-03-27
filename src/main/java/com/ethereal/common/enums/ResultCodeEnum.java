@@ -22,8 +22,8 @@ public enum ResultCodeEnum {
     USER_ACCOUNT_ERROR("5003","账号密码错误"),
     USER_NOT_EXIST_ERROR("5004","用户不存在"),
     PARAM_PASSWORD_ERROR("5005","原密码输入错误"),
-    PARAM_ALREADY_ERROR("5006","该用户已经担任其他社团团长了"),
-    HEAER_ALREADY_ERROR("5007","你已经申请过该社团"),
+    HEADER_ALREADY_ERROR("5006", "该用户已经担任其他社团社长了"),
+    APPLY_ALREADY_ERROR("5007", "您已经申请过该社团"),
 
 
     ;

@@ -1,7 +1,12 @@
 package com.ethereal.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import generator.domain.Comment;
+import com.ethereal.pojo.Comment;
+import com.ethereal.pojo.DTO.CommentDTO;
+import com.github.pagehelper.PageInfo;
+
+
+import java.util.List;
 
 /**
 * @author 53609
@@ -10,4 +15,15 @@ import generator.domain.Comment;
 */
 public interface CommentService extends IService<Comment> {
 
+    void add(Comment comment);
+
+    void deleteById(Integer id);
+
+    void deleteBatch(List<Integer> ids);
+
+    Comment selectById(Integer id);
+
+    List<CommentDTO> selectAll(CommentDTO commentDTO);
+
+    PageInfo<CommentDTO> selectPage(CommentDTO commentDTO, Integer pageNum, Integer pageSize);
 }

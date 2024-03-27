@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.ethereal.pojo.DTO.ActivityDTO;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -18,7 +19,7 @@ import java.io.Serializable;
 
 @TableName(value ="activity")
 @Data
-public class Activity implements Serializable {
+public class Activity extends ActivityDTO implements Serializable {
     /**
      * 主键ID
      */
@@ -53,7 +54,8 @@ public class Activity implements Serializable {
      * 社团ID
      */
     @TableField(value = "department_id")
-    private Integer department_id;
+    private Integer departmentId;
+
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

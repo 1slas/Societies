@@ -17,4 +17,12 @@
         id,img,name,
         description,user_id,time
     </sql>
+
+    <select id="selectByUserId" resultType="com.ethereal.pojo.Department">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from department
+        where user_id=#{user_id}
+    </select>
+
 </mapper>

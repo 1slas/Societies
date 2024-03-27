@@ -17,4 +17,34 @@
         id,user_id,department_id,
         time,content,parent_id
     </sql>
+
+    <resultMap id="CommentDTO" type="commentDTO">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="departmentName" column="department_id" jdbcType="INTEGER"/>
+        <result property="time" column="time" jdbcType="VARCHAR"/>
+        <result property="content" column="content" jdbcType="VARCHAR"/>
+        <result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="userAvatar" column="user_avatar" jdbcType="VARCHAR"/>
+        <result property="departmentName" column="department_name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="CommentDTO" >
+        select
+        <include refid="Base_Column_List"/>
+        user.name as userName,user.avatar as userAvatar,department.name as departmentName
+        from comment
+        left join user on comment.user_id = user.id
+        left join department on comment.department_id = department.id
+        <where>
+            <if test="id != null"> and comment.id = #{id}</if>
+            <if test="content != null"> and content like concat('%',#{content},'%')</if>
+            <if test="userId !=null"> and comment.user_id = #{userId}</if>
+            <if test="department != null"> and department_id = #{departmentId}</if>
+            <if test="time != null"> and comment.time= #{time}</if>
+            <if test="parentId != null"> and parent_id= #{parentId}</if>
+        </where>
+        order by id desc
+    </select>
 </mapper>

@@ -10,11 +10,36 @@
             <result property="name" column="name" jdbcType="VARCHAR"/>
             <result property="time" column="time" jdbcType="VARCHAR"/>
             <result property="description" column="description" jdbcType="VARCHAR"/>
-            <result property="department_id" column="department_id" jdbcType="INTEGER"/>
+            <result property="departmentId" column="department_id" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,img,name,
         time,description,department_id
     </sql>
+
+    <resultMap id="ActivityDTO" type="com.ethereal.pojo.DTO.ActivityDTO">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="img" column="img" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="time" column="time" jdbcType="VARCHAR"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
+        <result property="departmentId" column="department_id" jdbcType="INTEGER"/>
+        <result property="departmentName" column="department_name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="ActivityDTO">
+        select id,img,time,description,department_id,department_name as department.name
+        from activity
+        left join department on department_id = department_id
+        <where>
+            <if test="id != null"> and id = #{id}</if>
+            <if test="name != null"> and activity.name like concat('%',#{name} , '%')</if>
+            <if test="img != null"> and activity.img = #{img}</if>
+            <if test="description != null"> and activity.description like concat('%' ,#{description} ,'%')</if>
+            <if test="departmentId != null"> and department_id = #{departmentId}</if>
+            <if test="time != null"> and activity.time = #{time}</if>
+        </where>
+        order by id desc
+    </select>
 </mapper>

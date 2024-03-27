@@ -11,7 +11,7 @@ import com.ethereal.pojo.Department;
 * @Entity generator.domain.Department
 */
 public interface DepartmentMapper extends BaseMapper<Department> {
-
+    Department selectByUserId(Integer userId);
 }
 
 
