@@ -1,7 +1,11 @@
 package com.ethereal.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import generator.domain.Notice;
+import com.ethereal.pojo.Notice;
+import com.github.pagehelper.PageInfo;
+
+import java.util.List;
+
 
 /**
 * @author 53609
@@ -10,4 +14,13 @@ import generator.domain.Notice;
 */
 public interface NoticeService extends IService<Notice> {
 
+    void add(Notice notice);
+    void deleteById(Integer id);
+    void deleteBatch(List<Integer> ids);
+
+    Notice selectById(Integer id);
+
+    List<Notice> selectAll(Notice notice);
+
+    PageInfo<Notice> selectPage(Notice notice, Integer pageNum, Integer pageSize);
 }

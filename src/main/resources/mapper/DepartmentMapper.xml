@@ -25,4 +25,33 @@
         where user_id=#{user_id}
     </select>
 
+    <resultMap id="DepartmentDTO" type="departmentDTO">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="img" column="img" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="time" column="time" jdbcType="VARCHAR"/>
+        <result property="userName" column="username" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="DepartmentDTO">
+        SELECT
+        <include refid="Base_Column_List"/>
+        username as userName
+        from department
+        left join user on department.user_id = user.id
+        <where>
+            <where>
+                <if test="id != null"> and department.id= #{id}</if>
+                <if test="name != null"> and department.name like concat('%', #{name}, '%')</if>
+                <if test="img != null"> and img= #{img}</if>
+                <if test="description != null"> and description like concat('%', #{description}, '%')</if>
+                <if test="userId != null"> and user_id= #{userId}</if>
+                <if test="time != null"> and time= #{time}</if>
+            </where>
+        </where>
+        order by id desc
+    </select>
+
 </mapper>

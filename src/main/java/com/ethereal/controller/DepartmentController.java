@@ -1,8 +1,10 @@
 package com.ethereal.controller;
 
 import com.ethereal.common.Result;
+import com.ethereal.pojo.DTO.DepartmentDTO;
 import com.ethereal.pojo.Department;
 import com.ethereal.service.DepartmentService;
+import com.github.pagehelper.PageInfo;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,7 +49,25 @@ public class DepartmentController {
     @GetMapping("/department/{id}")
     public Result selectById(@PathVariable Integer id){
         Department department = departmentService.selectById(id);
-        return Result.s
+        return Result. success(department);
+    }
+    /**
+     * 查询所有信息
+     */
+    @GetMapping("/selectAll")
+    public Result selectAll(DepartmentDTO departmentDTO){
+        List<DepartmentDTO> list = departmentService.selectAll(departmentDTO);
+        return Result.success(list);
+    }
+    /**
+     * 分页查询
+     */
+    @GetMapping("/selectPage")
+    public Result selectPage(DepartmentDTO departmentDTO,
+                             @RequestParam(value = "1") Integer pageNum,
+                             @RequestParam(value = "10") Integer pageSize){
+        PageInfo<DepartmentDTO> page = departmentService.selectPage(departmentDTO,pageNum,pageSize);
+        return Result.success(page);
     }
 
 

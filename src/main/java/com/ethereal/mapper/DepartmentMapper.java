@@ -2,7 +2,10 @@ package com.ethereal.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.ethereal.pojo.DTO.DepartmentDTO;
 import com.ethereal.pojo.Department;
+
+import java.util.List;
 
 /**
 * @author 53609
@@ -12,6 +15,8 @@ import com.ethereal.pojo.Department;
 */
 public interface DepartmentMapper extends BaseMapper<Department> {
     Department selectByUserId(Integer userId);
+
+    List<DepartmentDTO> selectAll(DepartmentDTO departmentDTO);
 }
 
 
