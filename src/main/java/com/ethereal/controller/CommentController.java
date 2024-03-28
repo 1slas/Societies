@@ -22,7 +22,7 @@ public class CommentController {
     /**
      * 新增
      */
-    @PostMapping("/comment")
+    @PostMapping
     public Result add(@RequestBody Comment comment){
         commentService.add(comment);
         return Result.success();
@@ -30,7 +30,7 @@ public class CommentController {
     /**
      * 删除
      */
-    @DeleteMapping("/comment/{id}")
+    @DeleteMapping("/{id}")
     public Result deleteById(@PathVariable Integer id){
         commentService.deleteById(id);
         return Result.success();
@@ -38,7 +38,7 @@ public class CommentController {
     /**
      * 批量删除
      */
-    @DeleteMapping("/comment/batch")
+    @DeleteMapping("/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids){
         commentService.deleteBatch(ids);
         return Result.success();
@@ -46,7 +46,7 @@ public class CommentController {
     /**
      * 修改
      */
-    @PutMapping("/comment/{id}")
+    @PutMapping
     public Result updateById(@RequestBody Comment comment){
         commentService.updateById(comment);
         return Result.success();
@@ -54,7 +54,7 @@ public class CommentController {
     /**
      * 查询
      */
-    @GetMapping("/comment/{id}")
+    @GetMapping("/{id}")
     public Result selectById(@PathVariable Integer id){
         Comment comment = commentService.selectById(id);
         return Result.success(comment);

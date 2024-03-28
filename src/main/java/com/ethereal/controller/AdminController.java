@@ -23,7 +23,7 @@ public class AdminController {
     /**
      * 新增
      */
-    @PostMapping("/admin")
+    @PostMapping
     public Result add(@RequestBody Admin admin){
         adminService.add(admin);
         return Result.success();
@@ -31,7 +31,7 @@ public class AdminController {
     /**
      * 删除
      */
-    @DeleteMapping("/admin/{id}")
+    @DeleteMapping("/{id}")
     public Result deleteById(@PathVariable Integer id){
         adminService.deleteById(id);
         return Result.success();
@@ -39,7 +39,7 @@ public class AdminController {
     /**
      * 批量删除
      */
-    @DeleteMapping("/admin/batch")
+    @DeleteMapping("/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids){
         adminService.deleteBatch(ids);
         return Result.success();
@@ -47,7 +47,7 @@ public class AdminController {
     /**
      * 修改
      */
-    @PutMapping("/admin/{id}")
+    @PutMapping
     public Result updateById(@RequestBody Admin admin){
         adminService.updateById(admin);
         return Result.success();
@@ -55,7 +55,7 @@ public class AdminController {
     /**
      * 根据id查询
      */
-    @GetMapping("admin/{id}")
+    @GetMapping("/{id}")
     public Result selectById(@PathVariable Integer id){
         Admin admin = adminService.selectById(id);
         return Result.success(admin);

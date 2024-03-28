@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+
+import com.ethereal.pojo.DTO.InformationDTO;
 import lombok.Data;
 /**
  * @author Echo
@@ -16,7 +18,7 @@ import lombok.Data;
 
 @TableName(value ="information")
 @Data
-public class Information implements Serializable {
+public class Information extends InformationDTO implements Serializable {
     /**
      * 主键ID
      */

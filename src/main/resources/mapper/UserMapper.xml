@@ -21,4 +21,46 @@
         name,avatar,role,
         phone,email,level
     </sql>
+
+    <resultMap id="UserDTO" type="userDTO">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+        <result property="role" column="role" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="level" column="level" jdbcType="VARCHAR"/>
+        <result property="departmentId" column="department_id" jdbcType="INTEGER"/>
+        <result property="departmentName" column="department_name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="UserDTO">
+        SELECT
+        <include refid="Base_Column_List"/>
+        department_name,
+        from user
+        left join department on user.id = department.user_id
+        <where>
+            <if test="id != null"> and user.id= #{id}</if>
+            <if test="username != null"> and username like concat('%', #{username}, '%')</if>
+            <if test="password != null"> and password= #{password}</if>
+            <if test="name != null"> and user.name= #{name}</if>
+            <if test="phone != null"> and phone= #{phone}</if>
+            <if test="email != null"> and email= #{email}</if>
+            <if test="avatar != null"> and avatar= #{avatar}</if>
+            <if test="role != null"> and role= #{role}</if>
+            <if test="level != null"> and level= #{level}</if>
+        </where>
+        order by id desc
+    </select>
+
+
+    <select id="selectByUsername" resultType="com.ethereal.pojo.User">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where username = #{username}
+    </select>
 </mapper>

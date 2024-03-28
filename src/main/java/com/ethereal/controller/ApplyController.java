@@ -24,7 +24,7 @@ public class ApplyController {
     /**
      * 新增
      */
-    @PostMapping("/apply")
+    @PostMapping
     public Result add(@RequestBody Apply apply){
         applyService.add(apply);
         return Result.success();
@@ -32,7 +32,7 @@ public class ApplyController {
     /**
      * 删除
      */
-    @DeleteMapping("/apply/{id}")
+    @DeleteMapping("/{id}")
     public Result deleteById(@PathVariable Integer id){
          applyService.deleteById(id);
          return Result.success();
@@ -40,7 +40,7 @@ public class ApplyController {
     /**
      * 批量删除
      */
-    @DeleteMapping("/delete/batch")
+    @DeleteMapping("/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids){
         applyService.deleteBatch(ids);
         return Result.success();
@@ -48,7 +48,7 @@ public class ApplyController {
     /**
      * 修改
      */
-    @PutMapping("/apply/{id}")
+    @PutMapping
     public Result updateById(@RequestBody Apply apply){
         applyService.updateById(apply);
         return Result.success();
@@ -56,7 +56,7 @@ public class ApplyController {
     /**
      * 查询
      */
-    @GetMapping("/apply/{id}")
+    @GetMapping("/{id}")
     public Result selectById(@PathVariable Integer id){
         Apply apply = applyService.selectById(id);
         return Result.success(apply);

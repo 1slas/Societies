@@ -1,6 +1,7 @@
 package com.ethereal.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ethereal.pojo.Account;
 import com.ethereal.pojo.Admin;
 import com.github.pagehelper.PageInfo;
 
@@ -24,4 +25,10 @@ public interface AdminService extends IService<Admin> {
     List<Admin> selectAll(Admin admin);
 
     PageInfo<Admin> selectPage(Admin admin, Integer pageNum, Integer pageSize);
+
+    Account login(Account account);
+
+    void reister(Account account);
+
+    void updatePassword(Account account);
 }

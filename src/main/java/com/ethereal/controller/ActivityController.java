@@ -23,7 +23,7 @@ public class ActivityController {
     /**
      * 新增
      */
-    @PostMapping("/activity")
+    @PostMapping
     public Result add(@RequestBody Activity activity) {
         activityService.add(activity);
         return Result.success();
@@ -32,7 +32,7 @@ public class ActivityController {
     /**
      * 删除
      */
-    @DeleteMapping("/activity/{id}")
+    @DeleteMapping("/{id}")
     public Result delete(@PathVariable Integer id) {
         activityService.deleteById(id);
         return Result.success();
@@ -41,7 +41,7 @@ public class ActivityController {
     /**
      * 批量删除
      */
-    @DeleteMapping("/delete/batch")
+    @DeleteMapping("/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids) {
         activityService.deleteBatch(ids);
         return Result.success();
@@ -50,7 +50,7 @@ public class ActivityController {
     /**
      * 修改
      */
-    @PutMapping("/activity/{id}")
+    @PutMapping
     public Result updateById(@RequestBody Activity activity) {
         activityService.updateById(activity);
         return Result.success(activity);
@@ -59,7 +59,7 @@ public class ActivityController {
     /**
      * 查询
      */
-    @GetMapping("/activity/{id}")
+    @GetMapping("/{id}")
     public Result selectById(@PathVariable Integer id) {
         ActivityDTO activityDTO = activityService.selectById(id);
         return Result.success(activityDTO);

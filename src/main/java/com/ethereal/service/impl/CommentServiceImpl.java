@@ -32,7 +32,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment>
     @Resource
     private CommentMapper commentMapper;
     @Resource
-    private DepartmentMapper departmentMapper；
+    private DepartmentMapper departmentMapper;
 
     /**
      * 新增

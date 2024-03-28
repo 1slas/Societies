@@ -2,7 +2,10 @@ package com.ethereal.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.ethereal.pojo.DTO.InformationDTO;
 import com.ethereal.pojo.Information;
+
+import java.util.List;
 
 /**
 * @author 53609
@@ -12,6 +15,7 @@ import com.ethereal.pojo.Information;
 */
 public interface InformationMapper extends BaseMapper<Information> {
 
+    List<InformationDTO> selectAll(InformationDTO informationDTO);
 }
 
 

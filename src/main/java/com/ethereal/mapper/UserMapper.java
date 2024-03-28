@@ -2,7 +2,10 @@ package com.ethereal.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.ethereal.pojo.DTO.UserDTO;
 import com.ethereal.pojo.User;
+
+import java.util.List;
 
 /**
 * @author 53609
@@ -12,6 +15,9 @@ import com.ethereal.pojo.User;
 */
 public interface UserMapper extends BaseMapper<User> {
 
+    List<UserDTO> selectAll(UserDTO userDTO);
+
+    User selectByUsername(String username);
 }
 
 

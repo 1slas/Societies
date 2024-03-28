@@ -18,7 +18,7 @@ import java.io.Serializable;
 
 @TableName(value ="admin")
 @Data
-public class Admin implements Serializable {
+public class Admin extends Account implements Serializable {
     /**
      * ID
      */

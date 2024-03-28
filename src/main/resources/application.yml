@@ -1,5 +1,6 @@
 server:
   port: 9090
+ip: localhost
 
 # 数据库配置
 spring:
@@ -22,10 +23,9 @@ mybatis:
     map-underscore-to-camel-case: true
 
 # 分页
-pagehelper:
+page helper:
   helper-dialect: mysql
   reasonable: true
   support-methods-arguments: true
   params: count=countSql
 
-ip: localhost

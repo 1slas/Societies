@@ -1,5 +1,6 @@
 package com.ethereal.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ethereal.common.Constants;
@@ -7,8 +8,10 @@ import com.ethereal.common.enums.ResultCodeEnum;
 import com.ethereal.common.enums.RoleEnum;
 import com.ethereal.exception.CustomException;
 import com.ethereal.mapper.AdminMapper;
+import com.ethereal.pojo.Account;
 import com.ethereal.pojo.Admin;
 import com.ethereal.service.AdminService;
+import com.ethereal.untils.Token;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import jakarta.annotation.Resource;
@@ -100,6 +103,61 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin>
         List<Admin> list = adminMapper.selectAll(admin);
         return PageInfo.of(list);
     }
+    /**
+     * @param account:
+      * @return Account
+     * @author 53609
+     * @description 登录
+     * @date 2024/3/29 10:30
+     */
+    @Override
+    public Account login(Account account) {
+        Account dbAdmin = adminMapper.selectByUsername(account.getUsername());
+        if (ObjectUtil.isNull(dbAdmin)){
+            throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
+        }
+        if(!account.getPassword().equals(dbAdmin.getPassword())){
+            throw new CustomException(ResultCodeEnum.USER_ACCOUNT_ERROR);
+        }
+        //生产token
+        String tokenData = dbAdmin.getId() + "-" + RoleEnum.ADMIN.name();
+        String token = Token.creatToken(tokenData,dbAdmin.getPassword());
+        dbAdmin.setToken(token);
+        return dbAdmin;
+    }
+    /**
+     * @param account:
+      * @return void
+     * @author 53609
+     * @description 注册用户
+     * @date 2024/3/29 13:52
+     */
+    @Override
+    public void reister(Account account) {
+        Admin admin = new Admin();
+        BeanUtil.copyProperties(account,admin);
+        add(admin);
+    }
+    /**
+     * @param account:
+      * @return void
+     * @author 53609
+     * @description 修改密码
+     * @date 2024/3/29 13:55
+     */
+    @Override
+    public void updatePassword(Account account) {
+       Admin dbAdmin = adminMapper.selectByUsername(account.getUsername());
+       if (ObjectUtil.isNull(dbAdmin)){
+           throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
+       }
+       if (!account.getPassword().equals(dbAdmin.getPassword())){
+           throw new CustomException(ResultCodeEnum.PARAM_PASSWORD_ERROR);
+       }
+       dbAdmin.setPassword(account.getPassword());
+       adminMapper.updateById(dbAdmin);
+    }
+
 }
 
 

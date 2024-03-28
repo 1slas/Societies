@@ -16,4 +16,30 @@
         id,name,description,
         time,department_id
     </sql>
+
+    <resultMap id="InformationDTO" type="com.ethereal.pojo.DTO.InformationDTO">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
+        <result property="time" column="time" jdbcType="VARCHAR"/>
+        <result property="departmentId" column="department_id" jdbcType="INTEGER"/>
+        <result property="departmentName" column="department_name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <select id="selectAll" resultMap="InformationDTO">
+        SELECT
+        <include refid="Base_Column_List"/>
+        department.name as departmentName
+        from information
+        left join department on information.department_id = department.id
+        <where>
+            <if test="id != null"> and information.id= #{id}</if>
+            <if test="name != null"> and information.name like concat('%', #{name}, '%')</if>
+            <if test="description != null"> and information.description like concat('%', #{description}, '%')</if>
+            <if test="departmentId != null"> and department_id= #{departmentId}</if>
+            <if test="time != null"> and information.time= #{time}</if>
+        </where>
+        order by id desc
+    </select>
 </mapper>

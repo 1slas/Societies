@@ -18,7 +18,7 @@ import java.io.Serializable;
 
 @TableName(value ="user")
 @Data
-public class User implements Serializable {
+public class User extends Account implements Serializable {
     /**
      * 主键ID
      */

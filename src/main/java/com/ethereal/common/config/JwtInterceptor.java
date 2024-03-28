@@ -11,13 +11,16 @@ import com.ethereal.common.enums.RoleEnum;
 import com.ethereal.exception.CustomException;
 import com.ethereal.pojo.Account;
 import com.ethereal.pojo.Admin;
+import com.ethereal.pojo.User;
 import com.ethereal.service.AdminService;
 import com.ethereal.service.UserService;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -28,7 +31,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
  * @description jwt拦截器
  * @date 2024/3/24 18:26:13
  **/
-
+@Component
 public class JwtInterceptor implements HandlerInterceptor {
     private static final Logger log = LoggerFactory.getLogger(JwtInterceptor.class);
 
@@ -38,7 +41,7 @@ public class JwtInterceptor implements HandlerInterceptor {
     private UserService userService;
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)   {
+    public boolean preHandle(HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler)   {
         //1.从http中的header中获取token
         String token = request.getHeader(Constants.TOKEN);
         if (ObjectUtils.isEmpty(token)){
@@ -49,7 +52,7 @@ public class JwtInterceptor implements HandlerInterceptor {
         if(ObjectUtils.isEmpty(token)){
             throw new CustomException(ResultCodeEnum.TOKEN_INVALID_ERROR);
         }
-        Admin account = null;
+        Account account = null;
         try {
             //解析token获取存储的数据
             String userRole = JWT.decode(token).getAudience().get(0);

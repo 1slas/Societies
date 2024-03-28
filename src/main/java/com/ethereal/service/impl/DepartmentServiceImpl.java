@@ -3,12 +3,20 @@ package com.ethereal.service.impl;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ethereal.common.enums.LevelEnum;
 import com.ethereal.common.enums.ResultCodeEnum;
+import com.ethereal.common.enums.RoleEnum;
 import com.ethereal.exception.CustomException;
 import com.ethereal.mapper.DepartmentMapper;
+import com.ethereal.mapper.UserMapper;
+import com.ethereal.pojo.Account;
+import com.ethereal.pojo.DTO.DepartmentDTO;
 import com.ethereal.pojo.Department;
+import com.ethereal.pojo.User;
 import com.ethereal.service.DepartmentService;
-import generator.domain.Department;
+import com.ethereal.untils.Token;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +34,8 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
 
     @Resource
     private DepartmentMapper departmentMapper;
+    @Resource
+    private UserMapper userMapper;
 
     /**
      * 新增
@@ -61,6 +71,47 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
         for (Integer id : ids){
             departmentMapper.deleteById(id);
         }
+    }
+
+    /**
+     * 根据id查询
+     * @param id
+     * @return
+     */
+    @Override
+    public Department selectById(Integer id) {
+        return departmentMapper.selectById(id);
+    }
+
+    /**
+     * 查询所有信息
+     * @param departmentDTO
+     * @return
+     */
+    @Override
+    public List<DepartmentDTO> selectAll(DepartmentDTO departmentDTO) {
+        return departmentMapper.selectAll(departmentDTO);
+    }
+
+    /**
+     * 分页查询
+     * @param departmentDTO
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public PageInfo<DepartmentDTO> selectPage(DepartmentDTO departmentDTO, Integer pageNum, Integer pageSize) {
+        Account currentUser = Token.getCurrentUser();
+        if (RoleEnum.USER.name().equals(currentUser.getRole())){
+            User user = userMapper.selectById(currentUser.getId());
+            if (LevelEnum.HEADER.level.equals(user.getLevel())){
+                departmentDTO.setUserId(user.getId());
+            }
+        }
+        PageHelper.startPage(pageNum,pageSize);
+        List<DepartmentDTO> list = departmentMapper.selectAll(departmentDTO);
+        return PageInfo.of(list);
     }
 
 

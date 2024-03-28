@@ -4,6 +4,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.ethereal.common.Constants;
 import com.ethereal.common.enums.RoleEnum;
 import com.ethereal.pojo.Account;
@@ -70,6 +71,9 @@ public class Token {
                     return staticAdminService.selectById(Integer.valueOf(userId));
                 }
             }
+        }catch (Exception e){
+            log.error("获取用户信息出错" , e);
         }
+        return new Account();
     }
 }
