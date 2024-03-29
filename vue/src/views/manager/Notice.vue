@@ -101,7 +101,7 @@ export default {
       this.$refs.formRef.validate((valid) => {
         if (valid) {
           this.$request({
-            url: this.form.id ? '/notice/update' : '/notice/add',
+            url: this.form.id ? '/notice' : '/notice',
             method: this.form.id ? 'PUT' : 'POST',
             data: this.form
           }).then(res => {
@@ -118,7 +118,7 @@ export default {
     },
     del(id) {   // 单个删除
       this.$confirm('您确定删除吗？', '确认删除', {type: "warning"}).then(response => {
-        this.$request.delete('/notice/delete/' + id).then(res => {
+        this.$request.delete('/notice/' + id).then(res => {
           if (res.code === '200') {   // 表示操作成功
             this.$message.success('操作成功')
             this.load(1)
@@ -138,7 +138,7 @@ export default {
         return
       }
       this.$confirm('您确定批量删除这些数据吗？', '确认删除', {type: "warning"}).then(response => {
-        this.$request.delete('/notice/delete/batch', {data: this.ids}).then(res => {
+        this.$request.delete('/notice/batch', {data: this.ids}).then(res => {
           if (res.code === '200') {   // 表示操作成功
             this.$message.success('操作成功')
             this.load(1)

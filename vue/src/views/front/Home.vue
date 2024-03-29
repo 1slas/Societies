@@ -113,7 +113,7 @@ export default {
   methods: {
     loadInformation(pageNum) {
       if (pageNum) this.informationPageNum = pageNum
-      this.$request.get('/information/selectPage2', {
+      this.$request.get('/information/selectPage', {
         params: {
           pageNum: this.informationPageNum,
           pageSize: this.informationPageSize,
@@ -130,7 +130,7 @@ export default {
     },
     loadActivity(pageNum) {
       if (pageNum) this.activityPageNum = pageNum
-      this.$request.get('/activity/selectPage2', {
+      this.$request.get('/activity/selectPage', {
         params: {
           pageNum: this.activityPageNum,
           pageSize: this.activityPageSize,
