@@ -5,12 +5,13 @@
     <div class="front-header">
       <div class="front-header-left">
         <img src="@/assets/imgs/logo.png" alt="">
-        <div class="title">项目前台</div>
+        <div class="title">高校社团管理系统</div>
       </div>
       <div class="front-header-center">
         <div class="front-header-nav">
           <el-menu :default-active="$route.path" mode="horizontal" router>
 						<el-menu-item index="/front/home">首页</el-menu-item>
+						<el-menu-item index="/front/apply">我的申请</el-menu-item>
 						<el-menu-item index="/front/person">个人中心</el-menu-item>
           </el-menu>
         </div>
@@ -23,7 +24,7 @@
         <div v-else>
           <el-dropdown>
             <div class="front-header-dropdown">
-              <img :src="user.avatar" alt="">
+              <img :src="user.avatar" alt="" style="border-radius: 50%">
               <div style="margin-left: 10px">
                 <span>{{ user.name }}</span><i class="el-icon-arrow-down" style="margin-left: 5px"></i>
               </div>
@@ -93,4 +94,13 @@ export default {
 
 <style scoped>
   @import "@/assets/css/front.css";
+  .el-menu-item.is-active {
+    background-color: #c2a967 !important;
+    border-color: #40735d !important;
+    color: #fff !important;
+  }
+  .el-menu-item:hover {
+    background-color: #7cb79d !important;
+    color: #fff !important;
+  }
 </style>

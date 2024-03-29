@@ -33,7 +33,7 @@
     <div class="manager-main">
       <!--  侧边栏  -->
       <div class="manager-main-left">
-        <el-menu :default-openeds="['info', 'user']" router style="border: none" :default-active="$route.path">
+        <el-menu :default-openeds="['info', 'days', 'user']" router style="border: none" :default-active="$route.path">
           <el-menu-item index="/home">
             <i class="el-icon-s-home"></i>
             <span slot="title">系统首页</span>
@@ -42,14 +42,25 @@
             <template slot="title">
               <i class="el-icon-menu"></i><span>信息管理</span>
             </template>
-            <el-menu-item index="/notice">公告信息</el-menu-item>
+            <el-menu-item v-if="user.role === 'ADMIN'" index="/notice">公告信息</el-menu-item>
+            <el-menu-item index="/department">社团信息</el-menu-item>
           </el-submenu>
-
-          <el-submenu index="user">
+          <el-submenu index="days">
+            <template slot="title">
+              <i class="el-icon-menu"></i><span>日常管理</span>
+            </template>
+            <el-menu-item index="/apply">申请审批</el-menu-item>
+            <el-menu-item index="/member">社团成员</el-menu-item>
+            <el-menu-item index="/activity">社团活动</el-menu-item>
+            <el-menu-item index="/information">社团资讯</el-menu-item>
+            <el-menu-item index="/comment">社团评论</el-menu-item>
+          </el-submenu>
+          <el-submenu index="user" v-if="user.role === 'ADMIN'">
             <template slot="title">
               <i class="el-icon-menu"></i><span>用户管理</span>
             </template>
             <el-menu-item index="/admin">管理员信息</el-menu-item>
+            <el-menu-item index="/user">学生信息</el-menu-item>
           </el-submenu>
         </el-menu>
       </div>
@@ -83,6 +94,9 @@ export default {
     goToPerson() {
       if (this.user.role === 'ADMIN') {
         this.$router.push('/adminPerson')
+      }
+      if (this.user.role === 'USER') {
+        this.$router.push('/userPerson')
       }
     },
     logout() {
