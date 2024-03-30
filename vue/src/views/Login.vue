@@ -60,7 +60,8 @@ export default {
               if (res.data.level === '学生') {
                 location.href = '/front/home'
               } else {
-                this.$router.push('/')  // 跳转主页
+                this.$router.push('/')
+                console.log("111111111111")// 跳转主页
               }
               this.$message.success('登录成功')
             } else {
