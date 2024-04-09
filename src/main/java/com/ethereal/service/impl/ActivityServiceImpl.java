@@ -16,6 +16,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -38,6 +39,7 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity>
      * @param activity
      */
     @Override
+    @Transactional
     public void add(Activity activity) {
         activity.setTime(DateUtil.format(new Date(), "yyyy-MM-dd"));
         //获取社团id

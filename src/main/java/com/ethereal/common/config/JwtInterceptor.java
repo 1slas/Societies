@@ -10,15 +10,12 @@ import com.ethereal.common.enums.ResultCodeEnum;
 import com.ethereal.common.enums.RoleEnum;
 import com.ethereal.exception.CustomException;
 import com.ethereal.pojo.Account;
-import com.ethereal.pojo.Admin;
-import com.ethereal.pojo.User;
 import com.ethereal.service.AdminService;
 import com.ethereal.service.UserService;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
@@ -33,7 +30,9 @@ import org.springframework.web.servlet.HandlerInterceptor;
  **/
 @Component
 public class JwtInterceptor implements HandlerInterceptor {
-    private static final Logger log = LoggerFactory.getLogger(JwtInterceptor.class);
+    static {
+        LoggerFactory.getLogger(JwtInterceptor.class);
+    }
 
     @Resource
     private AdminService adminService;

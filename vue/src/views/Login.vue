@@ -7,7 +7,8 @@
           <el-input prefix-icon="el-icon-user" placeholder="请输入账号" v-model="form.username"></el-input>
         </el-form-item>
         <el-form-item prop="password">
-          <el-input prefix-icon="el-icon-lock" placeholder="请输入密码" show-password  v-model="form.password"></el-input>
+          <el-input prefix-icon="el-icon-lock" placeholder="请输入密码" show-password
+                    v-model="form.password"></el-input>
         </el-form-item>
         <el-form-item>
           <el-select v-model="form.role" placeholder="请选择角色" style="width: 100%">
@@ -16,7 +17,9 @@
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-button style="width: 100%; background-color: #f96332; border-color: #f96332; color: white" @click="login">登 录</el-button>
+          <el-button style="width: 100%; background-color: #f96332; border-color: #f96332; color: white" @click="login">
+            登 录
+          </el-button>
         </el-form-item>
         <div style="display: flex; align-items: center">
           <div style="flex: 1"></div>
@@ -38,16 +41,15 @@ export default {
       dialogVisible: true,
       rules: {
         username: [
-          { required: true, message: '请输入账号', trigger: 'blur' },
+          {required: true, message: '请输入账号', trigger: 'blur'},
         ],
         password: [
-          { required: true, message: '请输入密码', trigger: 'blur' },
+          {required: true, message: '请输入密码', trigger: 'blur'},
         ]
       }
     }
   },
   created() {
-
   },
   methods: {
     login() {
@@ -85,6 +87,7 @@ export default {
   justify-content: center;
   color: #666;
 }
+
 a {
   color: #2a60c9;
 }

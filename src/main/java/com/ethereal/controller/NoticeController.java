@@ -14,7 +14,7 @@ import java.util.List;
  * @BelongsPackage: com.ethereal.controller
  * @Author: Echo
  * @CreateTime: 2024-03-28  17:24
- * @Description: TODO
+ * @Description: 公告控制器
  * @Version: 1.0
  */
 @RestController

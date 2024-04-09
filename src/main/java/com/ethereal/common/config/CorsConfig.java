@@ -7,6 +7,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 /**
+ * 跨域配置类，用于通过Spring配置方式启用并定制跨域请求过滤器。
+ *
  * @author Echo
  * @version 1.0
  * @project Societies
@@ -15,18 +17,26 @@ import org.springframework.web.filter.CorsFilter;
  **/
 @Configuration
 public class CorsConfig {
-    @Bean(name ="CorsConfig" )
+    /**
+     * 创建并配置CorsFilter Bean。
+     *
+     * @return CorsFilter 跨域请求过滤器实例
+     */
+    @Bean(name ="CorsConfig")
     public CorsFilter corsConfig(){
+        // 创建基于URL的跨域配置源
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        // 创建并配置跨域配置对象
         CorsConfiguration corsConfiguration = new CorsConfiguration();
+        // 允许所有来源访问
         corsConfiguration.addAllowedOrigin("*");
-        //1.设置访问源 地址
+        // 允许所有请求头
         corsConfiguration.addAllowedHeader("*");
-        //2.设置访问源 请求头
+        // 允许所有请求方法
         corsConfiguration.addAllowedMethod("*");
-        //3.设置访问源 请求方法
-        source.registerCorsConfiguration("/**",corsConfiguration);
-        //4.对接口配置的 跨域设置
+        // 将跨域配置应用到所有路径
+        source.registerCorsConfiguration("/**", corsConfiguration);
+        // 返回CorsFilter实例
         return new CorsFilter(source);
     }
 }

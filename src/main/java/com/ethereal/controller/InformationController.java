@@ -1,13 +1,11 @@
 package com.ethereal.controller;
 
 import com.ethereal.common.Result;
-import com.ethereal.mapper.InformationMapper;
 import com.ethereal.pojo.DTO.InformationDTO;
 import com.ethereal.pojo.Information;
 import com.ethereal.service.InformationService;
 import com.github.pagehelper.PageInfo;
 import jakarta.annotation.Resource;
-import org.springframework.objenesis.instantiator.perc.PercInstantiator;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +15,7 @@ import java.util.List;
  * @BelongsPackage: com.ethereal.controller
  * @Author: Echo
  * @CreateTime: 2024-03-29  08:40
- * @Description: TODO
+ * @Description: 信息控制器
  * @Version: 1.0
  */
 @RestController

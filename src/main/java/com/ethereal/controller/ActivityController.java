@@ -71,7 +71,7 @@ public class ActivityController {
     @GetMapping("/selectAll")
     public Result selectAll(ActivityDTO activityDTO) {
         List<ActivityDTO> list = activityService.selectAll(activityDTO);
-        return Result.success(activityDTO);
+        return Result.success(list);
     }
 
     /**

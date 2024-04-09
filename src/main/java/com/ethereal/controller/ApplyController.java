@@ -4,10 +4,8 @@ import com.ethereal.common.Result;
 import com.ethereal.pojo.Apply;
 import com.ethereal.pojo.DTO.ApplyDTO;
 import com.ethereal.service.ApplyService;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import jakarta.annotation.Resource;
-import org.apache.ibatis.io.ResolverUtil;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
