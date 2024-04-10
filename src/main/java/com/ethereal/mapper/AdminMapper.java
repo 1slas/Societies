@@ -3,6 +3,7 @@ package com.ethereal.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ethereal.pojo.Admin;
+import org.apache.ibatis.annotations.Mapper;
 
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 * @createDate 2024-03-26 15:36:38
 * @Entity generator.domain.Admin
 */
+
 public interface AdminMapper extends BaseMapper<Admin> {
 
     Admin selectByUsername(String username);

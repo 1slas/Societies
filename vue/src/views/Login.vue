@@ -56,6 +56,7 @@ export default {
       this.$refs['formRef'].validate((valid) => {
         if (valid) {
           // 验证通过
+          console.log('Sending JSON:', JSON.stringify(this.form));
           this.$request.post('/login', this.form).then(res => {
             if (res.code === '200') {
               localStorage.setItem("xm-user", JSON.stringify(res.data))  // 存储用户数据

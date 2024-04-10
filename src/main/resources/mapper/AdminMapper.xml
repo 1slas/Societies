@@ -41,4 +41,12 @@
         <include refid="Base_Column_List"/>
         from admin where username = #{username}
     </select>
+
+
+    <select id="selectById" resultType="com.ethereal.pojo.Admin">
+        select
+        <include refid="Base_Column_List"/>
+        from admin where id = #{id}
+    </select>
+
 </mapper>

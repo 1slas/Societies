@@ -9,7 +9,6 @@ import com.ethereal.pojo.Account;
 import com.ethereal.service.AdminService;
 import com.ethereal.service.UserService;
 import jakarta.annotation.Resource;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -44,12 +43,11 @@ public class WebController {
      * @return Result 包含登录结果的状态码和信息
      */
     @PostMapping("/login")
-    public Result login (Account account){
+    public Result login (@RequestBody Account account){
         // 检查登录参数是否完整
-        if (account.getUsername() == null || account.getUsername().isEmpty() &&
-                (account.getPassword() == null || account.getPassword().isEmpty()) &&
-                (account.getRole() == null || account.getRole().isEmpty())){
-            return  Result.error(ResultCodeEnum.PARAM_LOST_ERROR);
+        if (ObjectUtil.isEmpty(account.getUsername()) || ObjectUtil.isEmpty(account.getPassword())
+                || ObjectUtil.isEmpty(account.getRole())) {
+            return Result.error(ResultCodeEnum.PARAM_LOST_ERROR);
         }
         // 处理管理员登录
         if(RoleEnum.ADMIN.name().equals(account.getRole())){
