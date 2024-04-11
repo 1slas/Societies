@@ -18,14 +18,14 @@
         description,user_id,time
     </sql>
 
-    <select id="selectByUserId" resultType="com.ethereal.pojo.Department">
+    <select id="selectByUserId" resultMap="DepartmentDTO">
         SELECT
         <include refid="Base_Column_List"/>
         from department
         where user_id=#{user_id}
     </select>
 
-    <resultMap id="DepartmentDTO" type="departmentDTO">
+    <resultMap id="DepartmentDTO" type="com.ethereal.pojo.DTO.DepartmentDTO">
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="img" column="img" jdbcType="VARCHAR"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>

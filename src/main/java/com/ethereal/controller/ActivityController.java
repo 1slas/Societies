@@ -24,7 +24,7 @@ public class ActivityController {
      * @param activity 包含活动信息的对象
      * @return 返回操作结果，成功则返回成功信息
      */
-    @PostMapping("/add")
+    @PostMapping
     public Result add(@RequestBody Activity activity) {
         activityService.add(activity);
         return Result.success();
@@ -35,7 +35,7 @@ public class ActivityController {
      * @param id 活动的唯一标识符
      * @return 返回操作结果，成功则返回成功信息
      */
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public Result delete(@PathVariable Integer id) {
         activityService.deleteById(id);
         return Result.success();
@@ -46,7 +46,7 @@ public class ActivityController {
      * @param ids 活动ID的列表
      * @return 返回操作结果，成功则返回成功信息
      */
-    @DeleteMapping("/delete/batch")
+    @DeleteMapping("/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids) {
         activityService.deleteBatch(ids);
         return Result.success();
@@ -57,7 +57,7 @@ public class ActivityController {
      * @param activity 包含更新后的活动信息的对象
      * @return 返回操作结果，成功则返回更新后的活动信息
      */
-    @PutMapping("/update")
+    @PutMapping
     public Result updateById(@RequestBody Activity activity) {
         activityService.updateById(activity);
         return Result.success(activity);
@@ -68,7 +68,7 @@ public class ActivityController {
      * @param id 活动的唯一标识符
      * @return 返回操作结果，成功则返回对应的活动信息
      */
-    @GetMapping("/selectById/{id}")
+    @GetMapping("/{id}")
     public Result selectById(@PathVariable Integer id) {
         ActivityDTO activityDTO = activityService.selectById(id);
         return Result.success(activityDTO);

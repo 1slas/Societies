@@ -22,7 +22,7 @@
         phone,email,level
     </sql>
 
-    <resultMap id="UserDTO" type="userDTO">
+    <resultMap id="UserDTO" type="com.ethereal.pojo.DTO.UserDTO">
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="username" column="username" jdbcType="VARCHAR"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
@@ -57,7 +57,7 @@
     </select>
 
 
-    <select id="selectByUsername" resultType="com.ethereal.pojo.User">
+    <select id="selectByUsername" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from user

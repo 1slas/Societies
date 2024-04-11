@@ -20,7 +20,7 @@
         name,avatar,role,
         phone,email
     </sql>
-    <select id="selectAll" resultType="com.ethereal.pojo.Admin">
+    <select id="selectAll" resultMap="BaseResultMap">
         <include refid="Base_Column_List"/>
         from admin
         <where>
@@ -36,14 +36,14 @@
     </select>
 
 
-    <select id="selectByUsername" resultType="com.ethereal.pojo.Admin">
+    <select id="selectByUsername" resultMap="BaseResultMap">
     select
         <include refid="Base_Column_List"/>
         from admin where username = #{username}
     </select>
 
 
-    <select id="selectById" resultType="com.ethereal.pojo.Admin">
+    <select id="selectById" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from admin where id = #{id}

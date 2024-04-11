@@ -7,7 +7,7 @@ import lombok.Data;
  */
 
 @Data
-public class ActivityDTO {
+public class    ActivityDTO {
     private Integer id;
     private String img;
     private String name;

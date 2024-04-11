@@ -18,7 +18,7 @@
         time,content,parent_id
     </sql>
 
-    <resultMap id="CommentDTO" type="commentDTO">
+    <resultMap id="CommentDTO" type="com.ethereal.pojo.DTO.CommentDTO">
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="userId" column="user_id" jdbcType="INTEGER"/>
         <result property="departmentName" column="department_id" jdbcType="INTEGER"/>

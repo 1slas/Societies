@@ -16,7 +16,7 @@
         id,title,content,
         time,user
     </sql>
-    <select id="selectAll" resultType="com.ethereal.pojo.Notice">
+    <select id="selectAll" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
         from notice

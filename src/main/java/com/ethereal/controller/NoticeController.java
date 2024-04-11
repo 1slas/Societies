@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
+ * 公告控制器
  * @BelongsProject: Societies
  * @BelongsPackage: com.ethereal.controller
  * @Author: Echo
  * @CreateTime: 2024-03-28  17:24
- * @Description: 公告控制器
  * @Version: 1.0
  */
 @RestController
@@ -22,78 +22,80 @@ import java.util.List;
 public class NoticeController {
     @Resource
     private NoticeService noticeService;
+
     /**
-     * @param notice:
-      * @return Result
-     * @author 53609
-     * @description 新增公告
-     * @date 2024/3/28 17:32
+     * 新增公告
+     * @param notice 公告对象，包含公告的详细信息
+     * @return 返回操作结果，成功则返回success
      */
     @PostMapping
     public Result add(@RequestBody Notice notice){
         noticeService.add(notice);
         return  Result.success();
     }
+
     /**
-     * @param id:
-      * @return Result
-     * @author 53609
-     * @description 删除公告
-     * @date 2024/3/28 17:37
+     * 根据ID删除公告
+     * @param id 公告的唯一标识符
+     * @return 返回操作结果，成功则返回success
      */
     @DeleteMapping("/{id}")
     public Result deleteById(@PathVariable Integer id){
         noticeService.deleteById(id);
         return Result.success();
     }
+
     /**
-     * @param ids:
-      * @return Result
-     * @author 53609
-     * @description 批量删除请求
-     * @date 2024/3/28 17:41
+     * 批量删除公告
+     * @param ids 公告ID的集合
+     * @return 返回操作结果，成功则返回success
      */
     @DeleteMapping("/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids){
         noticeService.deleteBatch(ids);
         return  Result.success();
     }
+
     /**
-     * @param notice:
-      * @return Result
-     * @author 53609
-     * @description 修改公告
-     * @date 2024/3/28 17:46
+     * 根据ID修改公告
+     * @param notice 包含修改后公告信息的Notice对象
+     * @return 返回操作结果，成功则返回success
      */
     @PutMapping
     public Result updateById(@RequestBody Notice notice){
         noticeService.updateById(notice);
         return Result.success();
     }
+
     /**
-     * @param id:
-      * @return Result
-     * @author 53609
-     * @description 根据id查询公告
-     * @date 2024/3/28 17:52
+     * 根据ID查询公告
+     * @param id 公告的唯一标识符
+     * @return 返回查询结果，成功则返回对应的Notice对象
      */
     @GetMapping("/{id}")
     public Result selectById(@PathVariable Integer id){
         Notice notice = noticeService.selectById(id);
         return Result.success(notice);
     }
+
     /**
-     * @param notice:
-      * @return Result
-     * @author 53609
-     * @description 获取公告信息列表
-     * @date 2024/3/28 17:57
+     * 查询所有公告信息
+     * @param notice 包含查询条件的Notice对象
+     * @return 返回查询结果，成功则返回公告信息列表
      */
     @GetMapping("/selectAll")
     public Result selectAll(@RequestBody Notice notice){
         List<Notice> list = noticeService.selectAll(notice);
         return Result.success(list);
     }
+
+    /**
+     * 分页查询公告
+     * @param notice 包含查询条件的Notice对象
+     * @param pageNum 页码
+     * @param pageSize 每页显示的数量
+     * @return 返回分页查询结果，成功则返回PageInfo对象
+     */
     @GetMapping("/selectPage")
     public Result selectPage(Notice notice,
                              @RequestParam(value = "1") Integer pageNum,

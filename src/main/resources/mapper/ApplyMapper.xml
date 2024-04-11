@@ -20,7 +20,7 @@
         note
     </sql>
 
-    <select id="selectByStatus" resultType="com.ethereal.pojo.Apply">
+    <select id="selectByStatus" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from apply
@@ -29,7 +29,8 @@
         AND department_id = #{departmentId}
         AND (status = '待审核' OR status = '审核通过');
     </select>
-    <resultMap id="selectAllMap" type="com.ethereal.pojo.DTO.ApplyDTO">
+
+    <resultMap id="ApplyDTO" type="com.ethereal.pojo.DTO.ApplyDTO">
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="userId" column="user_id" jdbcType="INTEGER"/>
         <result property="departmentId" column="department_id" jdbcType="INTEGER"/>
@@ -42,7 +43,7 @@
     </resultMap>
 
 
-    <select id="selectAll"  resultMap="selectAllMap">
+    <select id="selectAll"  resultMap="ApplyDTO">
         select apply.id,apply.user_id,department_id,apply.description,process,status,note,user.name as departmentName
         from apply
         left join user on apply.user_id = user.id

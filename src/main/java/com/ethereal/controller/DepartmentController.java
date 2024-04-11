@@ -24,7 +24,7 @@ public class DepartmentController {
      * @param department 部门对象，包含部门信息
      * @return 返回操作结果，成功或失败
      */
-    @PostMapping("/add")
+    @PostMapping
     public Result add(@RequestBody Department department){
         departmentService.add(department);
         return Result.success();
@@ -35,7 +35,7 @@ public class DepartmentController {
      * @param id 部门ID
      * @return 返回操作结果，成功或失败
      */
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public Result deleteById(@PathVariable Integer id){
         departmentService.deleteById(id);
         return Result.success();
@@ -46,7 +46,7 @@ public class DepartmentController {
      * @param ids 部门ID列表
      * @return 返回操作结果，成功或失败
      */
-    @DeleteMapping("/delete/batch")
+    @DeleteMapping("/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids){
         departmentService.deleteBatch(ids);
         return Result.success();
@@ -57,7 +57,7 @@ public class DepartmentController {
      * @param id 部门ID
      * @return 返回查询结果，包含部门信息
      */
-    @GetMapping("/selectById/{id}")
+    @GetMapping("/{id}")
     public Result selectById(@PathVariable Integer id){
         Department department = departmentService.selectById(id);
         return Result.success(department);

@@ -13,7 +13,6 @@ import java.util.List;
 * @Entity generator.domain.Notice
 */
 public interface NoticeMapper extends BaseMapper<Notice> {
-
     List<Notice> selectAll(Notice notice);
 }
 

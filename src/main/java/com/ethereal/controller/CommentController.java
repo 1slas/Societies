@@ -61,7 +61,7 @@ public class CommentController {
      * @param comment 待更新的评论对象
      * @return 返回操作结果，成功则返回success
      */
-    @PutMapping("/update")
+    @PutMapping
     public Result updateById(@RequestBody Comment comment){
         commentService.updateById(comment);
         return Result.success();
@@ -73,7 +73,7 @@ public class CommentController {
      * @param id 评论的ID
      * @return 返回查询结果，成功则返回该条评论
      */
-    @GetMapping("/selectById/{id}")
+    @GetMapping("/{id}")
     public Result selectById(@PathVariable Integer id){
         Comment comment = commentService.selectById(id);
         return Result.success(comment);

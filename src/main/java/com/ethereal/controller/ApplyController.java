@@ -25,7 +25,7 @@ public class ApplyController {
      * @param apply 包含申请信息的对象
      * @return 返回操作结果，成功则返回success
      */
-    @PostMapping("/add")
+    @PostMapping
     public Result add(@RequestBody Apply apply){
         applyService.add(apply);
         return Result.success();
@@ -37,7 +37,7 @@ public class ApplyController {
      * @param id 申请的ID
      * @return 返回操作结果，成功则返回success
      */
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public Result deleteById(@PathVariable Integer id){
         applyService.deleteById(id);
         return Result.success();
@@ -49,7 +49,7 @@ public class ApplyController {
      * @param ids 申请ID的列表
      * @return 返回操作结果，成功则返回success
      */
-    @DeleteMapping("/delete/batch")
+    @DeleteMapping("/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids){
         applyService.deleteBatch(ids);
         return Result.success();
@@ -61,7 +61,7 @@ public class ApplyController {
      * @param apply 包含更新后的申请信息的对象
      * @return 返回操作结果，成功则返回success
      */
-    @PutMapping("/update")
+    @PutMapping
     public Result updateById(@RequestBody Apply apply){
         applyService.updateById(apply);
         return Result.success();
@@ -73,7 +73,7 @@ public class ApplyController {
      * @param id 申请的ID
      * @return 返回查询结果，包含指定ID的申请信息
      */
-    @GetMapping("/selectById/{id}")
+    @GetMapping("/{id}")
     public Result selectById(@PathVariable Integer id){
         Apply apply = applyService.selectById(id);
         return Result.success(apply);

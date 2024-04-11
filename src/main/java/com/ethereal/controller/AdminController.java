@@ -25,7 +25,7 @@ public class AdminController {
      * @param admin 包含管理员信息的对象
      * @return 返回操作结果，成功则返回success
      */
-    @PostMapping("/add")
+    @PostMapping
     public Result add(@RequestBody Admin admin){
         adminService.add(admin);
         return Result.success();
@@ -36,7 +36,7 @@ public class AdminController {
      * @param id 管理员ID
      * @return 返回操作结果，成功则返回success
      */
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public Result deleteById(@PathVariable Integer id){
         adminService.deleteById(id);
         return Result.success();
@@ -47,7 +47,7 @@ public class AdminController {
      * @param ids 管理员ID列表
      * @return 返回操作结果，成功则返回success
      */
-    @DeleteMapping("/delete/batch")
+    @DeleteMapping("/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids){
         adminService.deleteBatch(ids);
         return Result.success();
@@ -58,7 +58,7 @@ public class AdminController {
      * @param admin 包含修改后管理员信息的对象
      * @return 返回操作结果，成功则返回success
      */
-    @PutMapping("/update")
+    @PutMapping
     public Result updateById(@RequestBody Admin admin){
         adminService.updateById(admin);
         return Result.success();
@@ -69,7 +69,7 @@ public class AdminController {
      * @param id 管理员ID
      * @return 返回查询结果，包含指定的管理员信息
      */
-    @GetMapping("/selectById/{id}")
+    @GetMapping("/{id}")
     public Result selectById(@PathVariable Integer id){
         Admin admin = adminService.selectById(id);
         return Result.success(admin);
